@@ -37,10 +37,12 @@ final class CrossbowLoader extends PluginBase implements Listener{
 		$itemDeserializer = GlobalItemDataHandlers::getDeserializer();
 		$itemSerializer = GlobalItemDataHandlers::getSerializer();
 		$crossbow = VanillaItems::CROSSBOW();
+		
 
 		StringToItemParser::getInstance()->register("Crossbow", static fn() => clone $crossbow);
 
 		CreativeInventory::getInstance()->add($crossbow);
+		$itemDeserializer->map(ItemTypeNames::CROSSBOW, static fn() => clone $crossbow);
 
 		$enchMap = EnchantmentIdMap::getInstance();
 
