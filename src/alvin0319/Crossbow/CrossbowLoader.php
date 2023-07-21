@@ -15,9 +15,9 @@ use pocketmine\item\enchantment\Enchantment;
 use pocketmine\item\enchantment\ItemFlags;
 use pocketmine\item\enchantment\Rarity;
 use pocketmine\item\enchantment\StringToEnchantmentParser;
-use pocketmine\item\ItemFactory;
+use pocketmine\item\StringToItemParser;
 use pocketmine\item\ItemIdentifier;
-use pocketmine\item\ItemIds;
+use pocketmine\item\ItemTypeIds;
 use pocketmine\item\ItemUseResult;
 use pocketmine\network\mcpe\convert\TypeConverter;
 use pocketmine\network\mcpe\protocol\InventoryTransactionPacket;
@@ -34,7 +34,7 @@ final class CrossbowLoader extends PluginBase implements Listener{
 	public function onEnable() : void{
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 
-		ItemFactory::getInstance()->register($crossbow = new Crossbow(new ItemIdentifier(ItemIds::CROSSBOW, 0), "Crossbow"), true);
+		StringToItemParser::getInstance()->register($crossbow = new Crossbow(new ItemIdentifier(ItemIds::CROSSBOW, 0), "Crossbow"), true);
 
 		CreativeInventory::getInstance()->add($crossbow);
 
