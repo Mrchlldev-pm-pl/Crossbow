@@ -34,7 +34,11 @@ final class CrossbowLoader extends PluginBase implements Listener{
 	public function onEnable() : void{
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
 
-		StringToItemParser::getInstance()->register($crossbow = new Crossbow(new ItemIdentifier(ItemTypeIds::CROSSBOW, 0), "Crossbow"), true);
+		$itemDeserializer = GlobalItemDataHandlers::getDeserializer();
+		$itemSerializer = GlobalItemDataHandlers::getSerializer();
+		$crossbow = VanillaItems::CROSSBOW();
+
+		StringToItemParser::getInstance()->register("Crossbow", static fn() => clone $crossbow);
 
 		CreativeInventory::getInstance()->add($crossbow);
 
